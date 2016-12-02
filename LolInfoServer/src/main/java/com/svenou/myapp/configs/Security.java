@@ -2,6 +2,7 @@ package com.svenou.myapp.configs;
 
 import com.svenou.myapp.ServerProfileLoader;
 import com.svenou.myapp.security.service.CustomUserDetailsService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -16,6 +17,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class Security extends WebSecurityConfigurerAdapter {
 
+    @Value("${jdbc.cs.successUrl}")
+    private String successLoginUrl;
+
     @Bean
     CustomUserDetailsService customUserDetailsService(){
         return new CustomUserDetailsService();
@@ -28,6 +32,7 @@ public class Security extends WebSecurityConfigurerAdapter {
         );
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -35,7 +40,7 @@ public class Security extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("${jdbc.cs.successUrl}").hasAnyRole("ADMIN", "USER")
+                .antMatchers(successLoginUrl).hasAnyRole("ADMIN", "USER")
                 .antMatchers("/controller/**").hasAnyRole("ADMIN", "USER")
                 .and()
                 .anonymous()
