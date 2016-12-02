@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+	http://www.springframework.org/schema/security 
+	http://www.springframework.org/schema/security/spring-security-3.0.xsd 
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd 
+	http://www.springframework.org/schema/util 
+	http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<bean id="csDao" class="com.svenou.myapp.security.dao.impl.CsDaoImpl">
+		<property name="dataSource" ref="securityDataSource" />
+	</bean>
+
+	<bean id="csService" class="com.svenou.myapp.security.service.impl.CsServiceImpl">
+		<property name="authoritiedFailUrl" value="login.html"></property>
+		<property name="loginSuccessUrlMap">
+			<map>
+				<entry key="ROLE_ADMIN" value="${jdbc.cs.successUrl}" />
+				<entry key="ROLE_USER" value="${jdbc.cs.successUrl}" />
+			</map>
+		</property>
+	</bean>
+
+</beans>

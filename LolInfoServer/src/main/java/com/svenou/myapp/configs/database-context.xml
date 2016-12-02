@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+             xmlns:util="http://www.springframework.org/schema/util"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.1.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<beans:property name="dataSource" ref="dataSource"/>
+	</beans:bean>
+
+	<beans:bean id="dataSource" primary="true" class="org.apache.tomcat.jdbc.pool.DataSource">
+		<beans:property name="driverClassName"><beans:value>${jdbc.driverClassName}</beans:value></beans:property>
+		<beans:property name="url"><beans:value>${jdbc.url}</beans:value></beans:property>
+		<beans:property name="username"><beans:value>${jdbc.username}</beans:value></beans:property>
+		<beans:property name="password"><beans:value>${jdbc.password}</beans:value></beans:property>
+
+        <beans:property name="validationQuery"><beans:value>${jdbc.validationQuery}</beans:value></beans:property>
+        <beans:property name="testOnBorrow"><beans:value>${jdbc.testOnBorrow}</beans:value></beans:property>
+
+        <beans:property name="maxActive"><beans:value>${jdbc.maxActive}</beans:value></beans:property>
+        <beans:property name="maxIdle"><beans:value>${jdbc.maxIdle}</beans:value></beans:property>
+        <beans:property name="maxWait"><beans:value>${jdbc.maxWait}</beans:value></beans:property>
+	</beans:bean>
+
+	<beans:bean id="securityDataSource" class="org.apache.tomcat.jdbc.pool.DataSource">
+		<beans:property name="driverClassName"><beans:value>${jdbc.cs.driverClassName}</beans:value></beans:property>
+		<beans:property name="url"><beans:value>${jdbc.cs.url}</beans:value></beans:property>
+		<beans:property name="username"><beans:value>${jdbc.cs.username}</beans:value></beans:property>
+		<beans:property name="password"><beans:value>${jdbc.cs.password}</beans:value></beans:property>
+
+        <beans:property name="validationQuery"><beans:value>${jdbc.cs.validationQuery}</beans:value></beans:property>
+        <beans:property name="testOnBorrow"><beans:value>${jdbc.cs.testOnBorrow}</beans:value></beans:property>
+
+        <beans:property name="maxActive"><beans:value>${jdbc.cs.maxActive}</beans:value></beans:property>
+        <beans:property name="maxIdle"><beans:value>${jdbc.cs.maxIdle}</beans:value></beans:property>
+        <beans:property name="maxWait"><beans:value>${jdbc.cs.maxWait}</beans:value></beans:property>
+	</beans:bean>
+
+</beans:beans>

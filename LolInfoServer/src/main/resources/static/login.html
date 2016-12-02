@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Sven App</title>
+<link rel="stylesheet" type="text/css" href="./login_lib/css/login.css">
+<link rel="stylesheet" type="text/css"
+	href="./login_lib/libs/jqToast/css/jquery.toastmessage.css">
+</head>
+<body>
+	<form id="login" action="j_spring_security_check" method="post" data-ajax="false">
+		<label id="usernameLabel" class="label userId-label"></label>
+		<input id="username" name="j_username" type="text" value='sven.ou' autofocus required> 
+		
+		<label id="passwordLabel" class="label password-label"></label>
+		<input id="password" name="j_password" type="password" value='123456' required> 
+		
+		<label id="languageLabel" class="label labguage-label"></label>
+		<select id="language">
+			<option value="zh_CN">中文</option>
+			<option value="en_US">English</option>
+			<option value="in_ID">Indonesia</option>
+		</select>
+		<div class="action">
+			<label id="btn-login" class="btn"></label> <label id="btn-reset"
+				class="btn"></label>
+		</div>
+	</form>
+
+	<script type="text/javascript" src="./login_lib/libs/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="./login_lib/libs/jquery.cookie.js"></script>
+	<script type="text/javascript" src="./login_lib/libs/jqToast/jquery.toastmessage.js"></script>
+	<script type="text/javascript" src="./login_lib/js/login.js"></script>
+
+</body>
+</html>

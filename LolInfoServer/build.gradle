@@ -1,0 +1,55 @@
+apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
+
+dependencies {
+    compile fileTree(dir: "src/main/webapp/WEB-INF/lib", include: '*.jar')
+
+    compile group: 'javax.servlet', name: 'jstl', version: '1.2'
+    compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '8.5.8'
+
+    compile('org.springframework.boot:spring-boot-starter-jdbc')
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-aop')
+    compile group: 'org.apache.tomcat', name: 'tomcat-juli', version: "${tomcatVersion}"
+    runtime('mysql:mysql-connector-java')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+sourceSets {
+    main {
+        resources{
+            srcDirs += [
+                    "src/main/java/",
+                    "src/main/webapp"
+            ];
+            exclude("*.java", "*.jar")
+        }
+    }
+    test {
+        resources{
+            srcDirs += [
+                    "src/main/java/",
+                    "src/main/webapp"
+            ];
+            exclude("*.java", "*.jar")
+        }
+    }
+}
+
+jar {
+    baseName = 'lolinfoserver'
+    version = '0.0.1-SNAPSHOT'
+}
+
+war {
+    webInf {
+        from 'src/main/resources/META-INF/resources/WEB-INF/'
+    }
+    rootSpec.exclude('**/META-INF/resources/WEB-INF/**')
+}
+
+
+test.onlyIf { property('runTestOnBuild') }
+println("---------tomcatVersion----------" + "${tomcatVersion}")
+println("---------runTestOnBuild----------" + property('runTestOnBuild'))

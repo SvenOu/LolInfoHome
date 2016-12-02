@@ -1,0 +1,110 @@
+@CHARSET "UTF-8";
+/* loading */
+#loading {
+	width: 100%;
+	height: 100%;
+	background: #fff;
+}
+
+.loading-indicator {
+	font: bold 20px Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	position: absolute;
+	top: 45%;
+	left: 45%;
+	color: #666;
+	background-image: url(../images/loading.gif);
+	background-repeat: no-repeat;
+	background-position: left 1px;
+	padding: 10px 10px 29px 36px;
+	text-align: left;
+	height: 32px;
+}
+.main-header-panel{
+	background-color: transparent !important;
+	background: url(../images/titleBg.png) no-repeat !important;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/titleBg.png' ,sizingMethod= 'scale' ) !important;
+	-moz-background-size: 100% 100% !important;
+	background-size: 100% 100% !important;
+}
+.main-left-panel{
+	background: #D2E1E4 !important;
+}
+.function-button-cur {
+	opacity: 1;
+}
+.function-button {
+	cursor: pointer;
+	opacity: 0.7;
+}
+.function-button-cur .function-img {
+	background: url(../images/button_left_over.png) no-repeat;
+}
+.function-img {
+	margin: 5px auto 0px;
+	opacity: 0.9;
+	width: 78px;
+	height: 78px;
+	background: url(../images/button_left_up.png) no-repeat;
+}
+.function-img img {
+	margin: 10px;
+}
+.function-name {
+	text-align: center;
+	font-size: 12px;
+	margin: 0px 0px 8px;
+	font-weight: 700;
+	text-shadow: rgba(255, 255, 255, 0.298039) 0px 1px 0px;
+	color: rgb(85, 85, 85);
+}
+.main-view-panel .x-tab-bar .x-tab{
+	background: url(../images/tab_bg.png) !important;
+}
+.main-view-panel .x-tab-bar .x-tab .x-tab-default-top-mc{
+	background: url(../images/tab_bg.png) !important;
+}
+.main-view-panel .x-tab-bar .x-tab:hover{
+	background: url(../images/tab_bg_mouse_over.png) !important;
+}
+.main-view-panel .x-tab-bar .x-tab .x-tab-default-top-mc:hover{
+	background: url(../images/tab_bg_mouse_over.png) !important;
+}
+.main-view-panel .x-tab-bar .x-tab-active{
+	background: url(../images/tab_bg_over.png) !important;
+}
+.main-view-panel .x-tab-bar .x-tab-active .x-tab-default-top-mc{
+	background: url(../images/tab_bg_over.png) !important;
+}
+.main-view-panel .x-tab-bar .x-tab-active .x-tab-inner{
+	color: black !important;
+}
+.main-view-panel .x-tab-bar .x-tab-active:hover .x-tab-inner{
+	color: white !important;
+}
+.btn-log-off{
+	border-color: transparent !important;
+	background: url(../images/button_up.png) no-repeat !important;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/button_up.png' ,sizingMethod= 'scale' ) !important;
+	-moz-background-size: 100% 100% !important;
+	background-size: 100% 100% !important;
+}
+.btn-log-off table.x-table-plain td{
+	background: transparent !important;
+}
+.btn-log-off:hover{
+	background: url(../images/button_over.png) no-repeat !important;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/button_over.png' ,sizingMethod= 'scale' ) !important;
+	-moz-background-size: 100% 100% !important;
+	background-size: 100% 100% !important;
+}
+.user-name{
+	text-align: center;
+	color: yellow;
+	font-weight: bold;
+	font-size: 14px;
+}
+.header-title-text{
+	font-weight: bold;
+	color: green;
+	font-size: medium;
+}

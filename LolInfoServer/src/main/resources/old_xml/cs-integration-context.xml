@@ -1,0 +1,53 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+			 xmlns:beans="http://www.springframework.org/schema/beans"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.1.xsd">
+
+	<http pattern="/resources/**" security="none"/>
+	<http pattern="/static/**" security="none"/>
+    <!-- enable use-expressions -->
+	<http auto-config="false" use-expressions="true">
+		<intercept-url pattern="${jdbc.cs.successUrl}" access="hasRole('ROLE_ADMIN') OR hasRole('ROLE_USER')" />
+		<anonymous enabled="false" />
+		<session-management session-fixation-protection="none" invalid-session-url="/login.html" >
+            <concurrency-control/>
+        </session-management>
+		<!-- access denied page -->
+		<access-denied-handler error-page="/login.html" />
+		<form-login
+		    login-page="/login.html"
+		    default-target-url="/controller/security/loginEntry"
+            always-use-default-target="true"
+            login-processing-url="/j_spring_security_check"
+            username-parameter="j_username"
+            password-parameter="j_password"
+			authentication-failure-url="/login.html"/>
+		<logout invalidate-session="true" logout-url="/j_spring_security_logout"  logout-success-url="/login.html"  />
+
+	</http>
+
+	<!-- Select users and user_roles from database -->
+	<beans:bean id="customUserDetailsService" class="com.svenou.myapp.security.service.CustomUserDetailsService"></beans:bean>
+
+	<authentication-manager alias="authenticationManager">
+		<!-- <authentication-provider>
+			<jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query=
+					"select username,password, enabled from users where username=?"
+				authorities-by-username-query=
+					"select username, role from user_roles where username =?  " />
+		</authentication-provider> -->
+		<authentication-provider user-service-ref="customUserDetailsService">
+			<!-- <password-encoder hash="md5">
+                <salt-source user-property="username"/>
+            </password-encoder> -->
+		</authentication-provider>
+	<!-- 	<authentication-provider>
+		    <user-service>
+			<user name="mkyong" password="123456" authorities="ROLE_ADMIN" />
+		    </user-service>
+		  </authentication-provider> -->
+	</authentication-manager>
+
+</beans:beans>

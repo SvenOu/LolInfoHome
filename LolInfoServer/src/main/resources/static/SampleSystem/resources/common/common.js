@@ -1,0 +1,11 @@
+app = {
+	context:{
+
+	},
+	setting: {
+
+	},
+	method:{
+		
+	}
+};

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/LolInfoHome.iml" filepath="$PROJECT_DIR$/.idea/modules/LolInfoHome.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/LolInfoServer/LolInfoServer.iml" filepath="$PROJECT_DIR$/.idea/modules/LolInfoServer/LolInfoServer.iml" group="LolInfoServer" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/LolInfoServer/LolInfoServer_main.iml" filepath="$PROJECT_DIR$/.idea/modules/LolInfoServer/LolInfoServer_main.iml" group="LolInfoServer" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/LolInfoServer/LolInfoServer_test.iml" filepath="$PROJECT_DIR$/.idea/modules/LolInfoServer/LolInfoServer_test.iml" group="LolInfoServer" />
+    </modules>
+  </component>
+</project>
