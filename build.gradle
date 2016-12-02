@@ -4,6 +4,7 @@ buildscript {
 
         //生产服务器版本
         tomcatVersion = '8.0.24'
+//        tomcatVersion = '7.0.72'
         //是否在build的时候跑test
         runTestOnBuild = false
     }
