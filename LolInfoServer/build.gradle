@@ -1,5 +1,6 @@
 apply plugin: 'org.springframework.boot'
 apply plugin: 'war'
+apply plugin: 'de.fuerstenau.buildconfig'
 
 dependencies {
     compile fileTree(dir: "src/main/webapp/WEB-INF/lib", include: '*.jar')
@@ -16,8 +17,63 @@ dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
+/* doc  https://github.com/mfuerstenau/gradle-buildconfig-plugin */
+def buildConfigGenSourceDir = "${buildDir}/gen/buildconfig/src/main/"
+/* set generateBuildConfig task execute after sync and make */
+/* generateBuildConfig必须设置成 execute after sync and make (或者手动执行一次 generateBuildConfig) */
+println "---开始加载配置文件---"
+def Properties props = new Properties()
+def propFile = file('build_app_config.properties')
+if (propFile.canRead()) {
+    props.load(new FileInputStream(propFile))
+    println "------app.buildConfig.appName: " + props['app.buildConfig.appName']
+    println "------app.buildConfig.version: " + props['app.buildConfig.version']
+    println "------app.buildConfig.clsName: " + props['app.buildConfig.clsName']
+    println "------app.buildConfig.packageName: " + props['app.buildConfig.packageName']
+
+    println "------currentMode: " + props['app.currentMode']
+    println "------MODE_TEST: " + props['app.MODE_TEST']
+    println "------MODE_LOCAL: " + props['app.MODE_LOCAL']
+    println "------MODE_PRO: " + props['app.MODE_PRO']
+} else {
+    println "---读取配置文件错误---"
+}
+println "---加载配置文件完成---"
+
+buildConfig {
+    appName = props['app.buildConfig.appName']      // sets value of NAME field
+    version = props['app.buildConfig.version'] // sets value of VERSION field,
+    // 'unspecified' if project.version is not set
+    clsName = props['app.buildConfig.clsName']      // sets the name of the BuildConfig class
+    packageName = props['app.buildConfig.packageName']  // sets the package of the BuildConfig class,
+    // 'de.fuerstenau.buildconfig' if project.group is not set
+    charset = 'UTF-8'            // sets charset of the generated class,
+    // 'UTF-8' if not set otherwise
+
+    buildConfigField 'String', 'currentServerMode', props['app.currentMode']
+    buildConfigField 'String', 'MODE_TEST', props['app.MODE_TEST']
+    buildConfigField 'String', 'MODE_LOCAL', props['app.MODE_LOCAL']
+    buildConfigField 'String', 'MODE_PRO', props['app.MODE_PRO']
+
+}
+
+jar {
+    baseName = props['app.buildConfig.appName']
+    version = props['app.buildConfig.version']
+}
+
+war {
+    webInf {
+        from 'src/main/resources/META-INF/resources/WEB-INF/'
+    }
+    rootSpec.exclude('**/META-INF/resources/WEB-INF/**')
+}
+
 sourceSets {
     main {
+        java {
+            srcDirs += files(buildConfigGenSourceDir)
+        }
         resources{
             srcDirs += [
                     "src/main/java/",
@@ -27,6 +83,9 @@ sourceSets {
         }
     }
     test {
+        java {
+            srcDirs += files(buildConfigGenSourceDir)
+        }
         resources{
             srcDirs += [
                     "src/main/java/",
@@ -35,18 +94,6 @@ sourceSets {
             exclude("*.java", "*.jar")
         }
     }
-}
-
-jar {
-    baseName = 'lolinfoserver'
-    version = '0.0.1-SNAPSHOT'
-}
-
-war {
-    webInf {
-        from 'src/main/resources/META-INF/resources/WEB-INF/'
-    }
-    rootSpec.exclude('**/META-INF/resources/WEB-INF/**')
 }
 
 

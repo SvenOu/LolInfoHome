@@ -1,5 +1,6 @@
 package com.svenou.myapp;
 
+import com.svenou.buildConfig.BuildConfig;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
@@ -18,21 +19,25 @@ public class ServerProfileLoader {
     /**
      * memory test data
      */
-    public static final String MODE_TEST = "test";
+//    public static final String MODE_TEST = "test";
+    public static final String MODE_TEST = BuildConfig.MODE_TEST;
     /**
      * Local DataBase
      */
-    public static final String MODE_LOCAL = "local";
+//    public static final String MODE_LOCAL = "local";
+    public static final String MODE_LOCAL = BuildConfig.MODE_LOCAL;
 
     /**
      * OpenShit DataBase
      */
-    public static final String MODE_PRO = "pro";
+//    public static final String MODE_PRO = "pro";
+    public static final String MODE_PRO = BuildConfig.MODE_PRO;
 
     /**
      * local, pro, test
      */
-    public static final String currentServerMode = MODE_TEST;
+//    public static final String currentServerMode = MODE_TEST;
+    public static final String currentServerMode = BuildConfig.currentServerMode;
 
     private static final Resource[] localResourceProperties = new Resource[]{
             new ClassPathResource("com/svenou/myapp/local-jdbc.properties"),

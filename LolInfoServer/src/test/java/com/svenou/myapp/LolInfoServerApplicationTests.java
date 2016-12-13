@@ -1,5 +1,6 @@
 package com.svenou.myapp;
 
+import com.svenou.buildConfig.BuildConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,7 +12,6 @@ public class LolInfoServerApplicationTests {
 
 	@Test
 	public void contextLoads() {
-
 	}
 
 }
