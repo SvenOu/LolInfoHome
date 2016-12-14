@@ -14,7 +14,7 @@ import java.io.IOException;
 @Configuration
 public class ServerProfileLoader {
 
-    private Log log = LogFactory.getLog(ServerProfileLoader.class);
+    private static final Log log = LogFactory.getLog(ServerProfileLoader.class);
 
     /**
      * memory test data
@@ -61,6 +61,7 @@ public class ServerProfileLoader {
     public static PropertyPlaceholderConfigurer propertyConfigurer() throws IOException {
         PropertyPlaceholderConfigurer configurer = new PropertyPlaceholderConfigurer();
         configurer.setLocations(getResourceProperties());
+        log.info("------- start with currentServerMode: " + currentServerMode + "------- ");
         return configurer;
     }
 
